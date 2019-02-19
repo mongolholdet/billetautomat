@@ -65,7 +65,7 @@ public class Billetautomat
         if (balance >= pris)
         {
             antalBilletterSolgt = antalBilletterSolgt + 1;
-            balance = 0;             // Nulstil balance
+            balance = balance - pris;
 
             System.out.println("##########B##T##########");
             System.out.println("# Borgen Trafikselskab #");
