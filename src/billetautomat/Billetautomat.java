@@ -62,18 +62,24 @@ public class Billetautomat
      */
     public void udskrivBillet()
     {
-        antalBilletterSolgt = antalBilletterSolgt + 1;
-        balance = 0;             // Nulstil balance
+        if (balance >= pris)
+        {
+            antalBilletterSolgt = antalBilletterSolgt + 1;
+            balance = 0;             // Nulstil balance
 
-        System.out.println("##########B##T##########");
-        System.out.println("# Borgen Trafikselskab #");
-        System.out.println("#                      #");
-        System.out.println("#        Billet        #");
-        System.out.println("#        " + pris + " kr.        #");
-        System.out.println("#                      #");
-        System.out.println("# Du har " + balance + " kr til gode #");
-        System.out.println("##########B##T##########");
-        System.out.println();
+            System.out.println("##########B##T##########");
+            System.out.println("# Borgen Trafikselskab #");
+            System.out.println("#                      #");
+            System.out.println("#        Billet        #");
+            System.out.println("#        " + pris + " kr.        #");
+            System.out.println("#                      #");
+            System.out.println("# Du har " + balance + " kr til gode #");
+            System.out.println("##########B##T##########");
+            System.out.println();
+        } else
+        {
+            System.out.println("Saldo for lav");
+        }
     }
 
     public void setBilletpris(String montørkode, double nyPris)
