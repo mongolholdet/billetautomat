@@ -6,8 +6,8 @@ package billetautomat;
 public class Billetautomat
 {
 
-    private int pris;    // Prisen for én billet.
-    private int balance; // Hvor mange penge kunden p.t. har puttet i automaten
+    private double pris;    // Prisen for én billet.
+    private double balance; // Hvor mange penge kunden p.t. har puttet i automaten
     private int antalBilletterSolgt; // Antal billetter automaten i alt har solgt
 
     /**
@@ -15,7 +15,7 @@ public class Billetautomat
      *
      * @param billetpris skal være større end nul (p.t. bliver det ikke tjekket)
      */
-    public Billetautomat(int billetpris)
+    public Billetautomat(double billetpris)
     {
         pris = billetpris;
     }
@@ -26,25 +26,25 @@ public class Billetautomat
      * @param billetpris skal være større end nul (p.t. bliver det ikke tjekket)
      * @param startbalance mængden af penge automaten allerede indeholder
      */
-    public Billetautomat(int billetpris, int startbalance)
+    public Billetautomat(double billetpris, double startbalance)
     {
-        int pris = billetpris;
+        double pris = billetpris;
         balance = startbalance;
     }
 
     /**
      * Giver prisen for en billet.
      */
-    public int getBilletpris()
+    public double getBilletpris()
     {
-        int resultat = pris;
+        double resultat = pris;
         return resultat;
     }
 
     /**
      * Modtag nogle penge (i kroner) fra en kunde.
      */
-    public void indsætPenge(int beløb)
+    public void indsætPenge(double beløb)
     {
         balance = balance + beløb;
     }
@@ -52,7 +52,7 @@ public class Billetautomat
     /**
      * Giver balancen (beløbet maskinen har modtaget til den næste billet).
      */
-    public int getBalance()
+    public double getBalance()
     {
         return balance;
     }
@@ -76,7 +76,7 @@ public class Billetautomat
         System.out.println();
     }
 
-    public void setBilletpris(String montørkode, int nyPris)
+    public void setBilletpris(String montørkode, double nyPris)
     {
         if (montørkode.equals("1234"))
         {
@@ -87,7 +87,7 @@ public class Billetautomat
         }
     }
 
-    public int getSamletSalgsbeløb(String montørkode)
+    public double getSamletSalgsbeløb(String montørkode)
     {
         if (montørkode.equals("1234"));
         return pris * antalBilletterSolgt;
