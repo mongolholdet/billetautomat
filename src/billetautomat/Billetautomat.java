@@ -174,4 +174,13 @@ public class Billetautomat
             System.out.println("Afvist. Log ind først.");
         }
     }
+    
+    public double returpenge()
+    {
+        double returbeløb = balance;
+        transaktioner.add(new Date() + " kunden fik "+returbeløb+" kr retur");
+        balance = 0;
+	System.out.println("Du får "+returbeløb+" kr retur");
+	return returbeløb;
+    }
 }
