@@ -1,5 +1,8 @@
 package billetautomat;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  * Model af en simpel billetautomat til enkeltbilletter med en fast pris.
  */
@@ -10,7 +13,8 @@ public class Billetautomat
     private double balance; // Hvor mange penge kunden p.t. har puttet i automaten
     private double samletSalgsbeløb; // Hvor mange penge maskinen har solgt for
     private boolean montørtilstand; // Er en montør logget ind på maskinen
-    
+    private ArrayList<String> transaktioner = new ArrayList<String>();
+
     /**
      * Opret en billetautomat, der sælger billetter til en given billetpris.
      *
@@ -71,6 +75,8 @@ public class Billetautomat
         if (beløb > 0)
         {
             balance = balance + beløb;
+            
+            transaktioner.add(new Date() + " der blev indsat "+beløb+" kroner");
         } else
         {
             System.out.println("Ugyldigt beløb. Indbetaling annulleret.");
@@ -104,6 +110,8 @@ public class Billetautomat
             System.out.println("# Du har " + balance + " kr til gode #");
             System.out.println("##########B##T##########");
             System.out.println();
+            
+            transaktioner.add(new Date() + " der blev udskrevet en billet");
         } else
         {
             System.out.println("Saldo for lav");
@@ -132,7 +140,7 @@ public class Billetautomat
             return -1;
         }
     }
-    
+
     public void montørLogInd(String montørkode)
     {
         if (montørkode.equals("1234"))
@@ -144,10 +152,26 @@ public class Billetautomat
             System.out.println("Forkert montørkode. Log ind afvist!");
         }
     }
-    
+
     public void montørLogUd()
     {
         montørtilstand = false;
         System.out.println("Logget ud.");
+    }
+    
+    public void udskrivTransaktioner()
+    {
+        if (montørtilstand)
+        {
+            System.out.print("========== transaktioner pr " + new Date());
+            for (String transaktion : transaktioner)
+            {
+                System.out.println(transaktion);
+            }
+            System.out.println("==========");
+        } else
+        {
+            System.out.println("Afvist. Log ind først.");
+        }
     }
 }
