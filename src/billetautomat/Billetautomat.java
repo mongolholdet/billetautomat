@@ -9,7 +9,8 @@ public class Billetautomat
     private double pris;    // Prisen for én billet.
     private double balance; // Hvor mange penge kunden p.t. har puttet i automaten
     private double samletSalgsbeløb; // Hvor mange penge maskinen har solgt for
-
+    private boolean montørtilstand; // Er en montør logget ind på maskinen
+    
     /**
      * Opret en billetautomat, der sælger billetter til en given billetpris.
      *
@@ -122,13 +123,31 @@ public class Billetautomat
 
     public double getSamletSalgsbeløb(String montørkode)
     {
-        if (montørkode.equals("1234"))
+        if (montørtilstand)
         {
             return samletSalgsbeløb;
         } else
         {
-            System.out.println("Forkert montørkode.");
+            System.out.println("Afvist. Log ind først.");
             return -1;
         }
+    }
+    
+    public void montørLogInd(String montørkode)
+    {
+        if (montørkode.equals("1234"))
+        {
+            montørtilstand = true;
+            System.out.println("Korrekt montørkode. Husk at logge ud igen!");
+        } else
+        {
+            System.out.println("Forkert montørkode. Log ind afvist!");
+        }
+    }
+    
+    public void montørLogUd()
+    {
+        montørtilstand = false;
+        System.out.println("Logget ud.");
     }
 }
