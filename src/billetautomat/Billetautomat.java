@@ -122,7 +122,13 @@ public class Billetautomat
 
     public double getSamletSalgsbeløb(String montørkode)
     {
-        if (montørkode.equals("1234"));
-        return pris * antalBilletterSolgt;
+        if (montørkode.equals("1234"))
+        {
+            return pris * antalBilletterSolgt;
+        } else
+        {
+            System.out.println("Forkert montørkode.");
+            return -1;
+        }
     }
 }
