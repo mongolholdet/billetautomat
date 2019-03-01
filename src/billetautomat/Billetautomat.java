@@ -13,23 +13,44 @@ public class Billetautomat
     /**
      * Opret en billetautomat, der sælger billetter til en given billetpris.
      *
-     * @param billetpris skal være større end nul (p.t. bliver det ikke tjekket)
+     * @param billetpris skal være større end nul
      */
     public Billetautomat(double billetpris)
     {
-        pris = billetpris;
+        if (billetpris > 0)
+        {
+            pris = billetpris;
+        } else
+        {
+            System.out.println("Ugyldigt beløb. Pris sat til standardbeløb.");
+            pris = 24.0;
+        }
     }
 
     /**
      * Opret en billetautomat, der sælger billetter til en given billetpris
      *
-     * @param billetpris skal være større end nul (p.t. bliver det ikke tjekket)
+     * @param billetpris skal være større end nul
      * @param startbalance mængden af penge automaten allerede indeholder
      */
     public Billetautomat(double billetpris, double startbalance)
     {
-        double pris = billetpris;
-        balance = startbalance;
+        if (billetpris > 0)
+        {
+            pris = billetpris;
+        } else
+        {
+            System.out.println("Ugyldigt beløb. Pris sat til standardbeløb.");
+            pris = 24.0;
+        }
+        if (startbalance > 0)
+        {
+            balance = startbalance;
+        } else
+        {
+            System.out.println("Ugyldig startbalance. Startbalance sat til 0.");
+            balance = 0;
+        }
     }
 
     /**
