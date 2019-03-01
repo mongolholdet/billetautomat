@@ -8,7 +8,7 @@ public class Billetautomat
 
     private double pris;    // Prisen for én billet.
     private double balance; // Hvor mange penge kunden p.t. har puttet i automaten
-    private int antalBilletterSolgt; // Antal billetter automaten i alt har solgt
+    private double samletSalgsbeløb; // Hvor mange penge maskinen har solgt for
 
     /**
      * Opret en billetautomat, der sælger billetter til en given billetpris.
@@ -91,7 +91,7 @@ public class Billetautomat
     {
         if (balance >= pris)
         {
-            antalBilletterSolgt = antalBilletterSolgt + 1;
+            samletSalgsbeløb = samletSalgsbeløb + pris;
             balance = balance - pris;
 
             System.out.println("##########B##T##########");
@@ -124,7 +124,7 @@ public class Billetautomat
     {
         if (montørkode.equals("1234"))
         {
-            return pris * antalBilletterSolgt;
+            return samletSalgsbeløb;
         } else
         {
             System.out.println("Forkert montørkode.");
