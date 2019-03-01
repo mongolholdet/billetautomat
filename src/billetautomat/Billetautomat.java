@@ -46,7 +46,13 @@ public class Billetautomat
      */
     public void indsætPenge(double beløb)
     {
-        balance = balance + beløb;
+        if (beløb > 0)
+        {
+            balance = balance + beløb;
+        } else
+        {
+            System.out.println("Ugyldigt beløb. Indbetaling annulleret.");
+        }
     }
 
     /**
