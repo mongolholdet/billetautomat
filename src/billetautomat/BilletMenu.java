@@ -16,7 +16,7 @@ public class BilletMenu
                 Billetautomat automat = new Billetautomat(24);
                 int valg;
                 
-                while(Boolean.parseBoolean("true"))
+                while(true)
                 {
                     //Valg af funktion
                     System.out.println("[1] Indsæt penge\n[2] Køb billet (" + automat.getBilletpris() + " kr.)\n[3] Tjek saldo\n");
