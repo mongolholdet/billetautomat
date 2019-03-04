@@ -105,9 +105,8 @@ public class Billetautomat
             System.out.println("# Borgen Trafikselskab #");
             System.out.println("#                      #");
             System.out.println("#        Billet        #");
-            System.out.println("#        " + pris + " kr.        #");
+            System.out.println("#        " + pris + " kr.      #");
             System.out.println("#                      #");
-            System.out.println("# Du har " + balance + " kr til gode #");
             System.out.println("##########B##T##########");
             System.out.println();
             
