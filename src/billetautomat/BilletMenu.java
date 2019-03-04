@@ -9,7 +9,7 @@ public class BilletMenu
               
                 Scanner sc = new Scanner(System.in); 
                 Billetautomat automat = new Billetautomat(24);
-                int valg = 0;
+                int valg;
                 
                 while(true)
                 {
