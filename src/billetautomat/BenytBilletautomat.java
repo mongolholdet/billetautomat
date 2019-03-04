@@ -4,6 +4,8 @@ public class BenytBilletautomat
 {
 	public static void main(String[] arg)
 	{
+            
+            Testy test
 		Billetautomat automat = new Billetautomat(24);
 		System.out.println("Installatøren har installeret en ny billetautomat");
 		System.out.println();
