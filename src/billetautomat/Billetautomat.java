@@ -117,9 +117,9 @@ public class Billetautomat
         }
     }
 
-    public void setBilletpris(String montørkode, double nyPris)
+    public void setBilletpris(double nyPris)
     {
-        if (montørkode.equals("1234"))
+        if (montørtilstand)
         {
             pris = nyPris;
         } else
@@ -128,7 +128,7 @@ public class Billetautomat
         }
     }
 
-    public double getSamletSalgsbeløb(String montørkode)
+    public double getSamletSalgsbeløb()
     {
         if (montørtilstand)
         {
