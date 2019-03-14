@@ -13,7 +13,7 @@ public class Billetautomat
     private double balance; // Hvor mange penge kunden p.t. har puttet i automaten
     private double samletSalgsbeløb; // Hvor mange penge maskinen har solgt for
     private boolean montørtilstand; // Er en montør logget ind på maskinen
-    private ArrayList<String> transaktioner = new ArrayList<String>();
+    private ArrayList<String> aktivitetslog = new ArrayList<String>();
 
     /**
      * Opret en billetautomat, der sælger billetter til en given billetpris.
@@ -25,7 +25,7 @@ public class Billetautomat
         if (billetpris > 0)
         {
             pris = billetpris;
-            transaktioner.add(new Date() + " Billetautomat startet med billetprisen: " + pris + ".");
+            aktivitetslog.add(new Date() + " Billetautomat startet med billetprisen: " + pris + ".");
         } 
         else
         {
@@ -45,7 +45,7 @@ public class Billetautomat
         if (billetpris > 0)
         {
             pris = billetpris;
-            transaktioner.add(new Date() + " Billetautomat startet med billetprisen: " + pris + " og startsbeløbet: " + ".");
+            aktivitetslog.add(new Date() + " Billetautomat startet med billetprisen: " + pris + " og startsbeløbet: " + ".");
 
         } 
         else
@@ -70,7 +70,7 @@ public class Billetautomat
     public double getBilletpris()
     {
         double resultat = pris;
-        transaktioner.add(new Date() + " Der blev udskrevet billetpris. Billetprisen er :" + resultat);
+        aktivitetslog.add(new Date() + " Der blev udskrevet billetpris. Billetprisen er :" + resultat);
         return resultat;
     }
 
@@ -83,7 +83,7 @@ public class Billetautomat
         {
             balance = balance + beløb;
             
-            transaktioner.add(new Date() + " Der blev indsat "+beløb+" kroner.");
+            aktivitetslog.add(new Date() + " Der blev indsat "+beløb+" kroner.");
         } 
         else
         {
@@ -96,7 +96,7 @@ public class Billetautomat
      */
     public double getBalance()
     {
-        transaktioner.add(new Date() + " Balancen blev returneret, den var: " + getBalance() + ".");
+        aktivitetslog.add(new Date() + " Balancen blev returneret, den var: " + getBalance() + ".");
         return balance;
     }
 
@@ -119,7 +119,7 @@ public class Billetautomat
             System.out.println("##########B##T##########");
             System.out.println();
             
-            transaktioner.add(new Date() + " Der blev udskrevet en billet til " + pris + " kroner.");
+            aktivitetslog.add(new Date() + " Der blev udskrevet en billet til " + pris + " kroner.");
         } 
         else
         {
@@ -132,7 +132,7 @@ public class Billetautomat
         if (montørtilstand)
         {
             pris = nyPris;
-            transaktioner.add(new Date() + " Billetprisen er sat til:" + pris);
+            aktivitetslog.add(new Date() + " Billetprisen er sat til:" + pris);
         } 
         else
         {
@@ -144,7 +144,7 @@ public class Billetautomat
     {
         if (montørtilstand)
         {
-            transaktioner.add(new Date() + " Det samlede salgsbeløb blev printet. Salgsbekøbet var: " + samletSalgsbeløb + ".");
+            aktivitetslog.add(new Date() + " Det samlede salgsbeløb blev printet. Salgsbekøbet var: " + samletSalgsbeløb + ".");
             return samletSalgsbeløb;
         } 
         else
@@ -160,7 +160,7 @@ public class Billetautomat
         {
             montørtilstand = true;
             System.out.println("Korrekt montørkode. Husk at logge ud igen!");
-            transaktioner.add(new Date() + " Montør loggede ind.");
+            aktivitetslog.add(new Date() + " Montør loggede ind.");
         } 
         else
         {
@@ -172,7 +172,7 @@ public class Billetautomat
     {
         montørtilstand = false;
         System.out.println("Logget ud.");
-        transaktioner.add(new Date() + " Montør logget ud.");
+        aktivitetslog.add(new Date() + " Montør logget ud.");
     }
     
     public void udskrivTransaktioner()
@@ -180,12 +180,12 @@ public class Billetautomat
         if (montørtilstand)
         {
             System.out.print("========== transaktioner pr " + new Date());
-            for (String transaktion : transaktioner)
+            for (String transaktion : aktivitetslog)
             {
                 System.out.println(transaktion);
             }
             System.out.println("==========");
-            transaktioner.add(new Date() + " Alle transaktioner blev udskrevet.");
+            aktivitetslog.add(new Date() + " Alle transaktioner blev udskrevet.");
         } 
         else
         {
@@ -196,7 +196,7 @@ public class Billetautomat
     public double returpenge()
     {
         double returbeløb = balance;
-        transaktioner.add(new Date() + " Kunden fik "+returbeløb+" kr retur");
+        aktivitetslog.add(new Date() + " Kunden fik "+returbeløb+" kr retur");
         balance = 0;
 	System.out.println("Du får "+returbeløb+" kr retur");
 	return returbeløb;
