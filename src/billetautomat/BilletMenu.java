@@ -27,7 +27,7 @@ public class BilletMenu
                     {
                         //case 1, indsæt pænge
                         case 1:     System.out.print("Indtast hvor meget du vil indsætte: ");
-                                    automat.indsætPenge(sc.nextInt());
+                                    automat.indsætPenge(sc.nextDouble());
                                     System.out.println("Din saldo er nu: " + automat.getBalance() + " kr.\n");
                                     break;
                                     
@@ -60,6 +60,7 @@ public class BilletMenu
                         //case 8, udskriv transaktioner  
                         case 8:     automat.udskrivTransaktioner();
                                     break;
+                                    
                         //default case
                         default:    System.out.println("Indtast venligst kun værdier fra 1 til 10.\n");
                     }
