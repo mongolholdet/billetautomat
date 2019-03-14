@@ -25,7 +25,8 @@ public class Billetautomat
         if (billetpris > 0)
         {
             pris = billetpris;
-        } else
+        } 
+        else
         {
             System.out.println("Ugyldigt beløb. Pris sat til standardbeløb.");
             pris = 24.0;
@@ -43,7 +44,8 @@ public class Billetautomat
         if (billetpris > 0)
         {
             pris = billetpris;
-        } else
+        } 
+        else
         {
             System.out.println("Ugyldigt beløb. Pris sat til standardbeløb.");
             pris = 24.0;
@@ -51,7 +53,8 @@ public class Billetautomat
         if (startbalance > 0)
         {
             balance = startbalance;
-        } else
+        } 
+        else
         {
             System.out.println("Ugyldig startbalance. Startbalance sat til 0.");
             balance = 0;
@@ -77,7 +80,8 @@ public class Billetautomat
             balance = balance + beløb;
             
             transaktioner.add(new Date() + " der blev indsat "+beløb+" kroner");
-        } else
+        } 
+        else
         {
             System.out.println("Ugyldigt beløb. Indbetaling annulleret.");
         }
@@ -111,7 +115,8 @@ public class Billetautomat
             System.out.println();
             
             transaktioner.add(new Date() + " der blev udskrevet en billet");
-        } else
+        } 
+        else
         {
             System.out.println("Saldo for lav");
         }
@@ -122,7 +127,8 @@ public class Billetautomat
         if (montørtilstand)
         {
             pris = nyPris;
-        } else
+        } 
+        else
         {
             System.err.println("Kunne ikke sætte pris - forkert kode");
         }
@@ -133,7 +139,8 @@ public class Billetautomat
         if (montørtilstand)
         {
             return samletSalgsbeløb;
-        } else
+        } 
+        else
         {
             System.out.println("Afvist. Log ind først.");
             return -1;
@@ -146,7 +153,8 @@ public class Billetautomat
         {
             montørtilstand = true;
             System.out.println("Korrekt montørkode. Husk at logge ud igen!");
-        } else
+        } 
+        else
         {
             System.out.println("Forkert montørkode. Log ind afvist!");
         }
@@ -168,7 +176,8 @@ public class Billetautomat
                 System.out.println(transaktion);
             }
             System.out.println("==========");
-        } else
+        } 
+        else
         {
             System.out.println("Afvist. Log ind først.");
         }
