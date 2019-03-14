@@ -105,9 +105,8 @@ public class Billetautomat
             System.out.println("# Borgen Trafikselskab #");
             System.out.println("#                      #");
             System.out.println("#        Billet        #");
-            System.out.println("#        " + pris + " kr.        #");
+            System.out.println("#        " + pris + " kr.      #");
             System.out.println("#                      #");
-            System.out.println("# Du har " + balance + " kr til gode #");
             System.out.println("##########B##T##########");
             System.out.println();
             
@@ -118,9 +117,9 @@ public class Billetautomat
         }
     }
 
-    public void setBilletpris(String montørkode, double nyPris)
+    public void setBilletpris(double nyPris)
     {
-        if (montørkode.equals("1234"))
+        if (montørtilstand)
         {
             pris = nyPris;
         } else
@@ -129,7 +128,7 @@ public class Billetautomat
         }
     }
 
-    public double getSamletSalgsbeløb(String montørkode)
+    public double getSamletSalgsbeløb()
     {
         if (montørtilstand)
         {
