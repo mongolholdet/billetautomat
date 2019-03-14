@@ -49,7 +49,7 @@ public class BilletMenu
                                     break;                                    
                                     
                         //case 6, montør log ind
-                        case 6:     System.out.println("Indtast montørkode: ");
+                        case 6:     System.out.print("Indtast montørkode: ");
                                     automat.montørLogInd(sc.nextLine());
                                     break;
                         
