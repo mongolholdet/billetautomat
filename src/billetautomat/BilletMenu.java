@@ -1,7 +1,5 @@
 /*
     Lavet af: C. Bjørner, U. Esbjørn, M. Repnak, H. Warncke
-
-
 */
 package billetautomat;
 
