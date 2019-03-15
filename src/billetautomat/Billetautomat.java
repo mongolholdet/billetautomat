@@ -168,6 +168,11 @@ public class Billetautomat
             System.out.println("Forkert montørkode. Log ind afvist!");
         }
     }
+    
+    public boolean getMontørtilstand()
+    {
+        return montørtilstand;
+    }
 
     public void montørLogUd()
     {
