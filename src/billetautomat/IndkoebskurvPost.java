@@ -17,7 +17,7 @@ public class IndkoebskurvPost
 	return navn;
     }
     
-    public double getPris()
+    public double getBilletPris()
     {
 	return pris;
     }
@@ -25,5 +25,10 @@ public class IndkoebskurvPost
     public int getAntal()
     {
         return antal;
+    }
+    
+    public double getSamletPris()
+    {
+        return pris*antal;
     }
 }
