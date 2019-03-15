@@ -11,23 +11,33 @@ public class BilletMenu
     public static void main(String[] arg)
 	{
               
-                Scanner sc = new Scanner(System.in); 
+                Scanner keyboardInput = new Scanner(System.in); 
                 Billetautomat automat = new Billetautomat(24);
-                int valg;
+                String stringValg;
+                int valg = 0;
                 
                 while(true) //Test
                 {
                     //Valg af funktion
                     System.out.println("[1] Indsæt penge\n[2] Køb billet (" + automat.getBilletpris() + " kr.)\n[3] Tjek saldo\n");
                     System.out.print("Vælg et menupunkt: ");
-                    valg = sc.nextInt();
+                    stringValg = keyboardInput.nextLine(); // Muliggør yderligere "fejlinput" fra brugeren af programmet
+                    
+                    try
+                    {
+                        valg = Integer.parseInt(stringValg);
+                    } 
+                    catch (Exception ikkeInt)
+                    {
+                        ikkeInt.printStackTrace();
+                    }
                     System.out.println();
                     
                     switch(valg)
                     {
                         //case 1, indsæt pænge
                         case 1:     System.out.print("Indtast hvor meget du vil indsætte: ");
-                                    automat.indsætPenge(sc.nextDouble());
+                                    automat.indsætPenge(keyboardInput.nextDouble());
                                     System.out.println("Din saldo er nu: " + automat.getBalance() + " kr.\n");
                                     break;
                                     
@@ -50,7 +60,7 @@ public class BilletMenu
                                     
                         //case 6, montør log ind
                         case 6:     System.out.print("Indtast montørkode: ");
-                                    automat.montørLogInd(sc.nextLine());
+                                    automat.montørLogInd(keyboardInput.nextLine());
                                     break;
                         
                         //case 7, få salgsbeløb       
