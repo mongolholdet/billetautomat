@@ -37,17 +37,25 @@ public class Log
     {
         FileReader logFileReader = new FileReader(filSti);
         BufferedReader logFilLaes = new BufferedReader(logFileReader);
-        String linje;
+        
+        ArrayList<String> dataArrayList = new ArrayList<String>();
+        String linje = logFilLaes.readLine();
+        while(linje != null)
+        {
+            dataArrayList.add(linje);
+            linje = logFilLaes.readLine();
+        }
+        
         while(Boolean.parseBoolean("true")) //lol
         {
+            System.out.println("[1] Print hele loggen\n[2] Print loggens køb");
             switch(type)
             {
+                
                 //case 0, printer hele loggen
-                case 0:     linje = logFilLaes.readLine();
-                            while(linje != null)
+                case 0:     for(String printLinje : dataArrayList)
                             {
-                                System.out.println(linje);
-                                linje = logFilLaes.readLine();
+                                System.out.println(printLinje);
                             }
                 //case 1, printer logggen ud fra beløb
                 case 1:     System.out.println("Filtrer efter dyreste beløb[1]\n[2]Billigste beløb\nPrint efter dato");
@@ -55,7 +63,18 @@ public class Log
                             int input = keyboardInput.nextInt();
                             switch(input)
                             {
-                                case 1:     ArrayList<String> sorterArrayList = new ArrayList<String>();
+                                case 1:     ArrayList<int> sorteredArrayList = new ArrayList<int>();
+                                            for(String logLinje : dataArrayList)
+                                            {
+                                                if(logLinje.contains("Der blev indsat"))
+                                                {
+                                                    
+                                                    sorteredArrayList.add(Integer.parseInt(logLinje.split(" ")[2]));
+                                                }
+                                                sorteredArrayList.sort();
+                                                
+                                            }
+                                            
                                             
                             }
             }
