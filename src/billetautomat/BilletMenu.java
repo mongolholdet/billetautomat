@@ -38,7 +38,7 @@ public class BilletMenu
                         //case 1, indsæt pænge
                         case 1:     System.out.print("Indtast hvor meget du vil indsætte: ");
                                     automat.indsætPenge(keyboardInput.nextDouble());
-                                    System.out.println("Din saldo er nu: " + automat.getBalance() + " kr.\n");
+                                    System.out.println("Din saldo er: " + automat.getBalance() + " kr.\n");
                                     break;
                                     
                         //case 2, køb billet
