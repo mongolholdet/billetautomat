@@ -4,13 +4,11 @@ public class BilletType
 {
     private String navn;
     private double pris;
-    private byte ID;
     
-    public void BilletType(String n, double p, byte id)
+    public void BilletType(String n, double p)
     {
 	navn = n;
 	pris = p;
-	ID = id;
     }
     
     public String getNavn()
@@ -21,11 +19,6 @@ public class BilletType
     public double getPris()
     {
 	return pris;
-    }
-    
-    public byte getID()
-    {
-	return ID;
     }
     
     public void setPris(double p)
