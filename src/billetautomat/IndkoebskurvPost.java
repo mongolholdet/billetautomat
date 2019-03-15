@@ -6,7 +6,7 @@ public class IndkoebskurvPost
     private double pris;
     private int antal;
     
-    public void IndkoebskurvPost(String n, double p)
+    public IndkoebskurvPost(String n, double p)
     {
 	navn = n;
 	pris = p;

@@ -5,7 +5,7 @@ public class BilletType
     private String navn;
     private double pris;
     
-    public void BilletType(String n, double p)
+    public BilletType(String n, double p)
     {
 	navn = n;
 	pris = p;
