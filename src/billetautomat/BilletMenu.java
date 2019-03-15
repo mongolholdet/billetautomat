@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class BilletMenu
 {
 
-    public static void BilletMenu()
+    public static void main(String[] args)
     {
 
 	Scanner keyboardInput = new Scanner(System.in);
