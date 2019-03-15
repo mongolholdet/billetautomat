@@ -185,13 +185,13 @@ public class Billetautomat
     {
         if (montørtilstand)
         {
-            System.out.print("========== transaktioner pr " + new Date());
+            System.out.print("========== log pr " + new Date());
             for (String transaktion : aktivitetslog)
             {
                 System.out.println(transaktion);
             }
             System.out.println("==========");
-            aktivitetslog.add(new Date() + " Alle transaktioner blev udskrevet.");
+            aktivitetslog.add(new Date() + " Hele loggen blev udskrevet.");
         } 
         else
         {
