@@ -19,7 +19,12 @@ public class BilletMenu
                 while(true) //Test
                 {
                     //Valg af funktion
-                    System.out.println("[1] Indsæt penge\n[2] Køb billet (" + automat.getBilletpris() + " kr.)\n[3] Tjek saldo\n");
+                    System.out.println("[1] Indsæt penge\n[2] Køb billet (" + automat.getBilletpris() + " kr.)\n[3] Tjek saldo");
+                    System.out.println("[4] Tjek billetpris\n[5] Afslut køb\n[6] Log ind som montør");
+                    if (automat.getMontørtilstand())
+                    {
+                        System.out.println("[7] Udskriv salgsbeløbet\n[8] Udskriv den komplette log");                        
+                    }
                     System.out.print("Vælg et menupunkt: ");
                     stringValg = keyboardInput.nextLine(); // Muliggør yderligere "fejlinput" fra brugeren af programmet
                     
@@ -27,9 +32,9 @@ public class BilletMenu
                     {
                         valg = Integer.parseInt(stringValg);
                     } 
-                    catch (Exception ikkeInt)
+                    catch (Exception ikketal)
                     {
-                        ikkeInt.printStackTrace();
+                        ikketal.printStackTrace();
                     }
                     System.out.println();
                     
@@ -54,7 +59,7 @@ public class BilletMenu
                         case 4:     System.out.println("Den nuværende pris er: " + automat.getBilletpris());
                                     break;
                         
-                        //case 5, afslut køb (returpenge)  
+                        //case 5, afslut køb og print returpenge
                         case 5:     System.out.println("Session afsluttet: " + automat.returpenge() + " nyd din rejse med Borgen Trafikselskab.");
                                     break;                                    
                                     
@@ -69,6 +74,9 @@ public class BilletMenu
                                     
                         //case 8, udskriv transaktioner  
                         case 8:     automat.udskrivTransaktioner();
+                                    break;
+                        //case 9, log montør ud            
+                        case 9:     automat.montørLogUd();;
                                     break;
                                     
                         //default case
