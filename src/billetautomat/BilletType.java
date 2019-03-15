@@ -27,4 +27,9 @@ public class BilletType
     {
 	return ID;
     }
+    
+    public void setPris(double p)
+    {
+	pris = p;
+    }
 }
