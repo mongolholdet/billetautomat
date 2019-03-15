@@ -43,7 +43,7 @@ public class BilletMenu
                                     
                         //case 2, køb billet
                         case 2:     automat.udskrivBillet();
-                                    System.out.println("Din saldo er nu: " + automat.getBalance() + " kr.\n");
+                                    System.out.println("Din saldo er: " + automat.getBalance() + " kr.\n");
                                     break;
 
                         //case 3, tjek saldo
