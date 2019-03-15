@@ -22,6 +22,7 @@ public class Billetautomat
      */
     public Billetautomat(double billetpris)
     {
+        balance = 0;
         if (billetpris > 0)
         {
             pris = billetpris;
@@ -96,7 +97,7 @@ public class Billetautomat
      */
     public double getBalance()
     {
-        aktivitetslog.add(new Date() + " Balancen blev returneret, den var: " + getBalance() + ".");
+        aktivitetslog.add(new Date() + " Balancen blev returneret, den var: " + balance + ".");
         return balance;
     }
 
