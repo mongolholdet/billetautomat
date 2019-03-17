@@ -61,24 +61,18 @@ public class Log
         logFileReader.close();
     }
     
+    //sammenligner beloeb
+    //runder desværre kommatallet op eller ned afhængigt af størrelsen. Dette giver en unøjagtighed op 1 krone i filtreringen
     public static Comparator<LogElement> sammenlignBeloebStigende = new Comparator<LogElement>() 
     {
 	public int compare(LogElement a, LogElement b) 
         {
-	   return Integer.valueOf(a.vaerdi) - Integer.valueOf(b.vaerdi);
+	   return Integer.valueOf(Math.round(Float.parseFloat(a.vaerdi))) - Integer.valueOf(Math.round(Float.parseFloat(b.vaerdi)));
         }
     };
     
-    public static Comparator<LogElement> sammenlignBeloebFaldende = new Comparator<LogElement>() 
-    {
-	public int compare(LogElement a, LogElement b) 
-        {
-	   return Integer.valueOf(b.vaerdi) - Integer.valueOf(a.vaerdi);
-
-        }
-    };
-    
-    public static Comparator<LogElement> sammenlignDatoFaldende = new Comparator<LogElement>() 
+    //sammenligner Date() strenge 
+    public static Comparator<LogElement> sammenlignDatoStigende = new Comparator<LogElement>() 
     {
 	public int compare(LogElement a, LogElement b) 
         {
@@ -87,16 +81,16 @@ public class Log
         }
     };
     
-    public void filtrerLog() throws IOException 
+    public void filtrerLogMenu() throws IOException 
     {
         logLoad();
         Scanner keyboardInput = new Scanner(System.in);
         int input;
         while (Boolean.parseBoolean("true")) //lol
         {
-            System.out.println("[1] Print hele loggen\n[2] Print loggens køb");
+            System.out.println("[1] Print hele loggen\n[2] Print loggens køb\n[3] Print ");
             input = keyboardInput.nextInt();
-            boolean filtrering = true;
+            boolean beloeb = true;
 
             switch (input) 
             {
@@ -121,17 +115,17 @@ public class Log
                         }
                     }
                     
-                    while (filtrering) 
+                    //en løkke til at vælge mellem de forskellige muligheder i "undermenuen" beløb eller køb
+                    while (beloeb) 
                     {
-                        System.out.println("[1]Filtrer efter faldende beløb\n[2]Filtrer efter stigende beløb\n[3]Print salg efter dato (ældste salg først)");
-                        System.out.println("[4]Print salg efter dato (nyeste salg først)\n[5]Gå tilbage\n");
+                        System.out.println("[1] Filtrer efter faldende beløb\n[2] Filtrer efter stigende beløb\n[3] Print salg efter dato (ældste salg først)");
+                        System.out.println("[4] Print salg efter dato (nyeste salg først)\n[5] Gå tilbage\n");
                         input = keyboardInput.nextInt();
 
                         switch (input) 
                         {
                             //case 1, sorter efter dyreste beløb
                             case 1:
-                                //Collections.sort(logBeloeb, new sammenlignBeloeb());
                                 Collections.sort(logBeloeb, sammenlignBeloebStigende);
 
                                 for (LogElement logElement : logBeloeb) 
@@ -142,7 +136,10 @@ public class Log
 
                             //case 2, sorter efter billigste beløb    
                             case 2:
-                                Collections.sort(logBeloeb, sammenlignBeloebFaldende);
+                                //den samme sortering bruges som i stigende, men der bruges blot reverse() på det for at få faldende
+                                Collections.sort(logBeloeb, sammenlignBeloebStigende);
+                                Collections.reverse(logBeloeb);
+                                
                                 for (LogElement logElement : logBeloeb) 
                                 {
                                     System.out.println(logElement);
@@ -151,7 +148,7 @@ public class Log
 
                             //case 3, sorter faldende dato
                             case 3:
-                                Collections.sort(logBeloeb, sammenlignDatoFaldende);
+                                Collections.sort(logBeloeb, sammenlignDatoStigende);
                                 
                                 for (LogElement logLinje : logBeloeb) 
                                 {
@@ -161,8 +158,8 @@ public class Log
 
                             //case 4, sorter efter stigende dato    
                             case 4:
-                                //den samme sortering bruges som i faldende, men der bruges blot reverse() på det
-                                Collections.sort(logBeloeb, sammenlignDatoFaldende);
+                                //den samme sortering bruges som i stigende, men der bruges blot reverse() på det for at få faldende
+                                Collections.sort(logBeloeb, sammenlignDatoStigende);
                                 Collections.reverse(logBeloeb);
                                 
                                 for (LogElement logLinje : logBeloeb) 
@@ -171,8 +168,9 @@ public class Log
                                 }
                                 break;
                                 
+                            //case 5, afslut køb loopet   
                             case 5: 
-                                filtrering = false;
+                                beloeb = false;
                                 break;
 
                             default:
@@ -181,6 +179,9 @@ public class Log
                         }
                     }
                 break;
+                
+                case 3:
+                    
             }
         }
     }
