@@ -98,9 +98,10 @@ public class Log
         logLoad();
         Scanner keyboardInput = new Scanner(System.in);
         int input;
+        System.out.println("Menuen ti loggen er åbnet. vælg fra på kommandoerne:");
         while (Boolean.parseBoolean("true")) //lol
         {
-            System.out.println("[1] Print hele loggen\n[2] Print loggens køb\n[3] Print ");
+            System.out.println("[1] Print hele loggen\n[2] Print loggens køb\n[3] Print administrative handlinger");
             input = keyboardInput.nextInt();
             boolean beloeb = true;
 
