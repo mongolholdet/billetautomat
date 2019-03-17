@@ -15,6 +15,6 @@ public class LogElement
 
     public String toString()
     {
-        return (dato + handling + vaerdi);
+        return (dato + " " + handling + " " + vaerdi);
     }
 }
