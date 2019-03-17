@@ -26,11 +26,18 @@ public class Log
         logFileReader.close();
     }
 
-    public void tilfoej(String dato, String handling, String vaerdi) throws IOException 
+    public void tilfoej(String dato, String handling, String vaerdi, String sekundaerVaerdi) throws IOException 
     {
         FileWriter logFileWriter = new FileWriter(filSti, true); //sætter append til at være true
-
-        logFileWriter.write(dato + "_" + handling + "_" + vaerdi + "\n"); //Printer til filen
+        
+        if (sekundaerVaerdi == "")
+        {
+            logFileWriter.write(dato + "_" + handling + "_" + vaerdi + "\n"); //Printer til filen
+        }
+        else
+        {
+            logFileWriter.write(dato + "_" + handling + "_" + vaerdi + "_" + sekundaerVaerdi + "\n"); //Printer til filen
+        }
         logFileWriter.close();
     }
 
@@ -46,6 +53,7 @@ public class Log
         String linjeDato;
         String linjeHandling;
         String linjeVaerdi;
+        String linjeSekundaerVaerdi = "";
 
         while (linje != null) 
         {
@@ -53,8 +61,12 @@ public class Log
             linjeDato = linjeArray[0];
             linjeHandling = linjeArray[1];
             linjeVaerdi = linjeArray[2];
-
-            logData.add(new LogElement(linjeDato, linjeHandling, linjeVaerdi));
+            
+            if(linjeArray.length >= 4)
+            {
+                linjeSekundaerVaerdi = linjeArray[3];
+            }
+            logData.add(new LogElement(linjeDato, linjeHandling, linjeVaerdi, linjeSekundaerVaerdi));
             linje = logFilLaes.readLine();
         }
         logFilLaes.close();
@@ -67,7 +79,7 @@ public class Log
     {
 	public int compare(LogElement a, LogElement b) 
         {
-	   return Integer.valueOf(Math.round(Float.parseFloat(a.vaerdi))) - Integer.valueOf(Math.round(Float.parseFloat(b.vaerdi)));
+	   return Integer.valueOf(Math.round(Float.parseFloat(a.getVaerdi()))) - Integer.valueOf(Math.round(Float.parseFloat(b.getVaerdi())));
         }
     };
     
@@ -76,7 +88,7 @@ public class Log
     {
 	public int compare(LogElement a, LogElement b) 
         {
-	   return a.dato.compareTo(b.dato);
+	   return a.getDato().compareTo(b.getDato());
 
         }
     };
@@ -109,7 +121,7 @@ public class Log
                     //opretter en arrayliste med alle udskrevne billetter, altså alle køb
                     for (LogElement logElement : logData) 
                     {
-                        if (logElement.handling.contains("Der blev udskrevet en billet til")) 
+                        if (logElement.getHandling().contains("Der blev udskrevet en billet til")) 
                         {
                             logBeloeb.add(logElement);
                         }
