@@ -12,18 +12,18 @@ public class BilletMenu
     {
 
 	Scanner keyboardInput = new Scanner(System.in);
-	Billetautomat automat = new Billetautomat(24);
+	Billetautomat automat = new Billetautomat();
 	String stringValg;
 	int valg = 0;
 
 	while (true) //Test
 	{
 	    //Valg af funktion
-	    System.out.println("[1] Indsæt penge\n[2] Køb billet (" + automat.getBilletpris() + " kr.)\n[3] Tjek saldo");
-	    System.out.println("[4] Tjek billetpris\n[5] Afslut køb\n[6] Log ind som montør");
+	    System.out.println("[1] Indsæt penge\n[2] Tilføj billet til indkøbskurv\n[3] Se indkøbskurv\n[4] Køb billetter i indkøbskurv\n[5] Tjek saldo");
+	    System.out.println("[6] Tjek billetpriser\n[7] Afslut\n[8] Log ind som montør");
 	    if (automat.getMontørtilstand())
 	    {
-		System.out.println("[7] Udskriv salgsbeløbet\n[8] Udskriv den komplette log");
+		System.out.println("[9] Udskriv salgsbeløbet\n[10] Udskriv den komplette log\n[11] Log ud");
 	    }
 	    System.out.print("Vælg et menupunkt: ");
 	    stringValg = keyboardInput.nextLine(); // Muliggør yderligere "fejlinput" fra brugeren af programmet
@@ -43,49 +43,70 @@ public class BilletMenu
 		case 1:
 		    System.out.print("Indtast hvor meget du vil indsætte: ");
 		    automat.indsætPenge(keyboardInput.nextDouble());
-		    System.out.println("Din saldo er: " + automat.getBalance() + " kr.\n");
+		    System.out.println("Din saldo er nu: " + automat.getBalance() + " kr.\n");
 		    break;
 
-		//case 2, køb billet
+		//case 2, tilføj billet til indkøbskurven
 		case 2:
-		    automat.udskrivBillet();
-		    System.out.println("Din saldo er: " + automat.getBalance() + " kr.\n");
+		    automat.printBillettyper();
+                    System.out.print("Vælg hvilken type billet du vil tilføje: ");
+                    
+                    stringValg = keyboardInput.nextLine();
+                    try
+                    {
+                        valg = Integer.parseInt(stringValg);
+                    } catch (Exception ikketal)
+                    {
+                        ikketal.printStackTrace();
+                    }
+                    
+                    automat.tilfoejIndkoebskurvElement(valg);
 		    break;
 
-		//case 3, tjek saldo
+                //case 3, print indholdet af indkøbskurven
 		case 3:
+		    automat.printIndkoebskurv();
+		    break;
+
+		//case 4, køb og udskriv billetterne i indkøbskurven
+		case 4:
+		    // Todo
+		    break;
+                    
+		//case 3, tjek saldo
+		case 5:
 		    System.out.println("Nuværende saldo: " + automat.getBalance() + " kr.\n");
 		    break;
 
-		//case 4, tjek billetpris
-		case 4:
-		    System.out.println("Den nuværende pris er: " + automat.getBilletpris());
+		//case 6, tjek billetpriser
+		case 6:
+		    System.out.println("De nuværende billetpriser er:");
+                    automat.printBillettyper();
 		    break;
 
-		//case 5, afslut køb og print returpenge
-		case 5:
+		//case 7, afslut køb og print returpenge
+		case 7:
 		    System.out.println("Session afsluttet: " + automat.returpenge() + " nyd din rejse med Borgen Trafikselskab.");
 		    break;
 
-		//case 6, montør log ind
-		case 6:
+		//case 8, montør log ind
+		case 8:
 		    System.out.print("Indtast montørkode: ");
 		    automat.montørLogInd(keyboardInput.nextLine());
 		    break;
 
-		//case 7, få salgsbeløb       
-		case 7:
+		//case 9, få salgsbeløb       
+		case 9:
 		    System.out.println("Salgsbeløbet er: " + automat.getSamletSalgsbeløb());
 		    break;
 
-		//case 8, udskriv transaktioner  
-		case 8:
+		//case 10, udskriv transaktioner  
+		case 10:
 		    automat.udskrivTransaktioner();
 		    break;
-		//case 9, log montør ud            
-		case 9:
+		//case 11, log montør ud            
+		case 11:
 		    automat.montørLogUd();
-		    ;
 		    break;
 
 		//default case
