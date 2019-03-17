@@ -28,22 +28,49 @@ public class Billetautomat
     public Billetautomat() throws IOException
     {
         aktivitetslog = new Log("aktivitetslog.txt");
-        balance = 0;
+        
+        int valg;
+        double pris;
         
         Scanner keyboardInput = new Scanner(System.in);
         System.out.println("Velkommen til Borgen Trafikselskab billetautomat første gangs opsætningsprocedure.");
+        
+        System.out.println("Vil du sætte en startsaldo til testformål?\n[0] Nej\n[1] Ja");
+        System.out.print("Vælg et menupunkt: ");
+        valg = keyboardInput.nextInt();
+        keyboardInput.nextLine();
+        if (valg == 1)
+        {
+            System.out.print("Indtast startsaldo: ");
+            pris = keyboardInput.nextDouble();
+            keyboardInput.nextLine();
+            if (pris > 0)
+            {
+                balance = pris;
+                System.out.println("Startsaldo sat til: " + pris + " kr.");
+            }
+            else
+            {
+                System.out.println("Ugyldig startbalance. Startbalance sat til 0.");
+                balance = 0;
+            }
+        }
+        else
+        {
+            balance = 0;
+        }
         
         System.out.print("Mindst én billettype skal defineres.\nIndtast navnet på billettypen: ");
         String navn = keyboardInput.nextLine();
         
         System.out.print("Indtast prisen på billettypen: ");
-        double pris = keyboardInput.nextDouble();
+        pris = keyboardInput.nextDouble();
         
         billettyper.add(new BilletType(navn,pris));
         
         System.out.println("Vil du tilføje flere billettyper?\n[0] Nej\n[1] Ja");
         System.out.print("Vælg et menupunkt: ");
-        int valg = keyboardInput.nextInt();
+        valg = keyboardInput.nextInt();
         keyboardInput.nextLine();
         if (valg == 1)
         {
