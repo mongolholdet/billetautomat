@@ -23,15 +23,15 @@ public class Log
             filAabning.printStackTrace();
         }
         logFilLaes.close();
+        logFileReader.close();
     }
     
-    public void tilfoej(String dato, String handling, String gamleVaerdi, String nyeVaerdi) throws IOException
+    public void tilfoej(String dato, String handling, String vaerdi) throws IOException
     {
-        FileWriter logFileWriter = new FileWriter(filSti);
-        PrintWriter logFilSkriv = new PrintWriter(logFileWriter);
+        FileWriter logFileWriter = new FileWriter(filSti, true); //sætter append til at være true
         
-        logFilSkriv.write(dato + "_" + handling + "_" + gamleVaerdi + "_" + nyeVaerdi + "\n"); //Printer til filen
-        logFilSkriv.close();
+        logFileWriter.write(dato + "_" + handling + "_" + vaerdi + "\n"); //Printer til filen
+        logFileWriter.close();
     }
     
     private void logLoad() throws IOException
@@ -45,21 +45,23 @@ public class Log
         String[] linjeArray; 
         String linjeDato; 
         String linjeHandling; 
-        String linjeGamleVaerdi;
-        String linjeNyeVaerdi;
+        String linjeVaerdi;
+
         
         while(linje != null)
         {
             linjeArray = linje.split("_");
             linjeDato = linjeArray[0];
             linjeHandling = linjeArray[1];
-            linjeGamleVaerdi = linjeArray[2];
-            linjeNyeVaerdi = linjeArray[3];
-            logData.add(new LogElement(linjeDato, linjeHandling, linjeGamleVaerdi, linjeNyeVaerdi));
+            linjeVaerdi = linjeArray[2];
+
+            logData.add(new LogElement(linjeDato, linjeHandling, linjeVaerdi));
             linje = logFilLaes.readLine();
         }
+        logFilLaes.close();
+        logFileReader.close();
     }
-    
+
     public void filtrerLog() throws IOException
     {
         logLoad();
@@ -72,36 +74,77 @@ public class Log
             
             switch(input)
             {
-                
-                //case 0, printer hele loggen
-                case 0:     
+                //case 1, printer hele loggen
+                case 1:     
                     for(LogElement logLinje : logData)
                     {
                         System.out.println(logLinje.toString());
                     }
                     break;
                     
-                //case 1, printer logggen ud fra beløb eller dato
-                case 1:     
-                    System.out.println("Filtrer efter dyreste beløb[1]\n[2]Billigste beløb\n[3]Print efter dato");
-                    input = keyboardInput.nextInt();
+                //case 1, printer logggen ud fra beløb
+                case 2:     
+                    System.out.println("[1]Filtrer efter dyreste beløb\n[2]Billigste beløb\n[3]Print salg efter dato (ældste salg først)");
+                    System.out.println("[4]Print salg efter dato (nyeste salg først)\n [5] Gå tilbage");
+                    ArrayList<LogElement> logBeloeb = new ArrayList<LogElement>();
                     
+                    //opretter en arrayliste med alle udskrevne billetter, altså alle køb
+                    for(LogElement logElement : logData)
+                    {
+                        if(logElement.handling.contains("Der blev udskrevet en billet til"))
+                        {
+                            logBeloeb.add(logElement);
+                            System.out.println(logElement);
+                        }
+                    }
+                   /* 
                     switch(input)
                     {
                         case 1:  
+                            Collections.sort(logBeloeb, new Comparator()
+                            {
+                                //sorterer arraylisten efter dyreste beløb
+                                public int sammenlign(LogElement a, LogElement b)
+                                {
+                                    return ((LogElement) b).vaerdi.compareTo(((LogElement) a).vaerdi);
+                                }
+                            });
                             
+                            for(LogElement logLinje : logBeloeb)
+                            {
+                                System.out.println(logLinje);
+                            }
                             break;
                         
                         case 2:
+                            Collections.sort(logBeloeb, new Comparator()
+                            {
+                                //sorterer arraylisten efter billigste beløb
+                                public int sammenlign(LogElement a, LogElement b)
+                                {
+                                    return ((LogElement) a).vaerdi.compareTo(((LogElement) b).vaerdi);
+                                }
+                            });
                             
+                            for(LogElement logLinje : logBeloeb)
+                            {
+                                System.out.println(logLinje);
+                            }
                             break;
                         
                         case 3:
-                            
+                            //da arrayet allerede er sorteret efter dato er der ingen grund til at sortere
+                            for(LogElement logLinje : logBeloeb)
+                            {
+                                System.out.println(logLinje);
+                            }
                             break;
             
                     }
                     break;
+                    
+*/
+                    
             }
         }
     }
