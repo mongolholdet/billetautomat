@@ -5,15 +5,16 @@ import java.util.ArrayList;
 public class Indkoebskurv
 {
     private ArrayList<Object> poster = new ArrayList<Object>();
+    private ArrayList<Object> billettyper = new ArrayList<Object>();
     
     public void Indkoebskurv()
     {
         
     }
     
-    public void tilfoejPost()
+    public void tilfoejPost(String navn, double pris)
     {
-        
+        poster.add(new IndkoebskurvPost(navn,pris));
     }
     
     public void printIndkoebskurv()
