@@ -1,0 +1,60 @@
+Sun Mar 17 22:32:51 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_true
+Sun Mar 17 22:32:55 CET 2019_Montør logget ud. Logintilstand:_false
+Sun Mar 17 22:32:55 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_false
+Sun Mar 17 22:45:19 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_false
+Sun Mar 17 22:45:22 CET 2019_Montør loggede ind med kode_1234
+Sun Mar 17 22:45:22 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_true
+Sun Mar 17 22:45:25 CET 2019_Loggen tilgået. Montøren var logget ind:_true
+Sun Mar 17 22:45:31 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_true
+Sun Mar 17 22:45:34 CET 2019_Der blev indsat antal kroner:_100.0
+Sun Mar 17 22:45:34 CET 2019_Balancen blev returneret, den var:_100.0
+Sun Mar 17 22:45:34 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_true
+Sun Mar 17 22:45:38 CET 2019_Kunden tjekkede alle billetter. Aktuel billet:_test_Til antal kroner:10.0
+Sun Mar 17 22:45:39 CET 2019_Kunden tjekkede sin kurv. I kurven er:1.0 x test_ : _1.0 x 10.0 kr.
+Sun Mar 17 22:45:39 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_true
+Sun Mar 17 22:45:41 CET 2019_Kunden tjekkede alle billetter. Aktuel billet:_test_Til antal kroner:10.0
+Sun Mar 17 22:45:41 CET 2019_Kunden tjekkede sin kurv. I kurven er:2.0 x test_ : _2.0 x 10.0 kr.
+Sun Mar 17 22:45:41 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_true
+Sun Mar 17 22:45:46 CET 2019_Kunden tjekkede sin kurv. I kurven er:2.0 x test_ : _2.0 x 10.0 kr.
+Sun Mar 17 22:45:46 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_true
+Sun Mar 17 22:45:53 CET 2019_Der blev udskrevet en billet til_10.0_ af test varianten
+Sun Mar 17 22:45:53 CET 2019_Der blev udskrevet en billet til_10.0_ af test varianten
+Sun Mar 17 22:45:53 CET 2019_Der blev udskrevet billetter til i alt_20.0
+Sun Mar 17 22:45:53 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_true
+Sun Mar 17 22:46:02 CET 2019_Kunden tjekkede alle billetter. Aktuel billet:_test_Til antal kroner:10.0
+Sun Mar 17 22:46:02 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_true
+Sun Mar 17 22:46:09 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_true
+Sun Mar 17 22:46:14 CET 2019_Montør logget ud. Logintilstand:_false
+Sun Mar 17 22:46:14 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_false
+Sun Mar 17 22:46:20 CET 2019_Montør loggede ind med kode_1234
+Sun Mar 17 22:46:20 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_true
+Sun Mar 17 22:46:21 CET 2019_Loggen tilgået. Montøren var logget ind:_true
+Sun Mar 17 22:49:48 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_false
+Sun Mar 17 22:49:52 CET 2019_Montør loggede ind med kode_1234
+Sun Mar 17 22:49:52 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_true
+Sun Mar 17 22:49:54 CET 2019_Loggen tilgået. Montøren var logget ind:_true
+Sun Mar 17 22:59:49 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_false
+Sun Mar 17 22:59:54 CET 2019_Montør loggede ind med kode_1234
+Sun Mar 17 22:59:54 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_true
+Sun Mar 17 22:59:58 CET 2019_Loggen tilgået. Montøren var logget ind:_true
+Sun Mar 17 23:00:15 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_true
+Sun Mar 17 23:02:21 CET 2019_Loggen tilgået. Montøren var logget ind:_true
+Sun Mar 17 23:02:53 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_true
+Sun Mar 17 23:03:02 CET 2019_Loggen tilgået. Montøren var logget ind:_true
+Sun Mar 17 23:06:51 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_false
+Sun Mar 17 23:06:55 CET 2019_Montør loggede ind med kode_1234
+Sun Mar 17 23:06:55 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_true
+Sun Mar 17 23:06:56 CET 2019_Loggen tilgået. Montøren var logget ind:_true
+Sun Mar 17 23:08:13 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_false
+Sun Mar 17 23:08:17 CET 2019_Montør loggede ind med kode_1234
+Sun Mar 17 23:08:17 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_true
+Sun Mar 17 23:08:19 CET 2019_Loggen tilgået. Montøren var logget ind:_true
+Sun Mar 17 23:16:55 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_false
+Sun Mar 17 23:17:00 CET 2019_Montør loggede ind med kode_1234
+Sun Mar 17 23:17:00 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_true
+Sun Mar 17 23:17:02 CET 2019_Loggen tilgået. Montøren var logget ind:_true
+Sun Mar 17 23:27:10 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_false
+Sun Mar 17 23:28:40 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_false
+Sun Mar 17 23:28:44 CET 2019_Montør loggede ind med kode_1234
+Sun Mar 17 23:28:44 CET 2019_Montørtilstand tjekket. Montøren var logget ind:_true
+Sun Mar 17 23:28:45 CET 2019_Loggen tilgået. Montøren var logget ind:_true

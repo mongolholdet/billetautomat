@@ -103,7 +103,7 @@ public class Log
         
         while (logSelection)
         {
-            System.out.println("[1] Print hele loggen\n[2] Filtrer loggens elemeter\n[3] Print administrative handlinger\n[4] Slet logdata\n[5] Gå tilbage");
+            System.out.println("[1] Print hele loggen\n[2] Filtrer loggens elemeter\n[3] Slet logdata\n[4] Gå tilbage");
             input = keyboardInput.nextInt();
             boolean beloeb = true;
 
@@ -208,7 +208,7 @@ public class Log
                         }
                     }
                 break;
-                //case 4, loggen kan slettes        
+                //case 3, loggen kan slettes        
                 case 3: System.out.println("Du har valgt at slette den nuværende log. Er du sikker at du vil slette loggen? \n[0] Nej \n[1] Ja");
                     if(keyboardInput.nextInt() == 1)
                     {
@@ -219,7 +219,7 @@ public class Log
                     }
                     break;
                     
-                //case 5 gå ud af menuen        
+                //case 4 gå ud af menuen        
                 case 4:
                     logSelection = false;
                     break;
