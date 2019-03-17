@@ -99,9 +99,11 @@ public class Log
         Scanner keyboardInput = new Scanner(System.in);
         int input;
         System.out.println("Menuen ti loggen er åbnet. vælg fra på kommandoerne:");
-        while (Boolean.parseBoolean("true")) //lol
+        boolean logSelection = true;
+        
+        while (logSelection)
         {
-            System.out.println("[1] Print hele loggen\n[2] Print loggens køb\n[3] Print administrative handlinger");
+            System.out.println("[1] Print hele loggen\n[2] Filtrer loggens elemeter\n[3] Print administrative handlinger\n[4] Slet logdata\n[5] Gå tilbage");
             input = keyboardInput.nextInt();
             boolean beloeb = true;
 
@@ -131,8 +133,8 @@ public class Log
                     //en løkke til at vælge mellem de forskellige muligheder i "undermenuen" beløb eller køb
                     while (beloeb) 
                     {
-                        System.out.println("[1] Filtrer efter faldende beløb\n[2] Filtrer efter stigende beløb\n[3] Print salg efter dato (ældste salg først)");
-                        System.out.println("[4] Print salg efter dato (nyeste salg først)\n[5] Gå tilbage\n");
+                        System.out.println("[1] Filtrer efter stigende beløb\n[2] Filtrer efter faldende beløb\n[3] Print salg efter dato (ældste salg først)");
+                        System.out.println("[4] Print salg efter dato (nyeste salg først)\n[5] print montør information\n[6] Gå tilbage");
                         input = keyboardInput.nextInt();
 
                         switch (input) 
@@ -181,21 +183,49 @@ public class Log
                                 }
                                 break;
                                 
-                            //case 5, afslut køb loopet   
-                            case 5: 
-                                beloeb = false;
+                             //case 5, andre log muligheder
+                            case 5:
+                                ArrayList<LogElement> logMontoer = new ArrayList<LogElement>();
+                                //opretter en arrayliste med alle logbeskeder som omhandler montøren
+                                for (LogElement logElement : logData) 
+                                {
+                                    if (logElement.getHandling().toUpperCase().contains("MONTØR")) 
+                                    {
+                                        logMontoer.add(logElement);
+                                    }
+                                }
+                                    
+                                for (LogElement logLinje : logMontoer) 
+                                {
+                                    System.out.println(logLinje);
+                                }
                                 break;
-
-                            default:
-                                System.out.println("Indtast et gyldigt nummer:");
+                                
+                            //case 6, afslut køb loopet   
+                            case 6: 
+                                beloeb = false;
                                 break;
                         }
                     }
                 break;
-                
-                case 3:
+                //case 4, loggen kan slettes        
+                case 3: System.out.println("Du har valgt at slette den nuværende log. Er du sikker at du vil slette loggen? \n[0] Nej \n[1] Ja");
+                    if(keyboardInput.nextInt() == 1)
+                    {
+                        FileWriter logSletter = new FileWriter(filSti);
+                        logSletter.write("");
+                        logSletter.close();
+                        System.out.println("Loggen er slettet.");
+                    }
+                    break;
                     
+                //case 5 gå ud af menuen        
+                case 4:
+                    logSelection = false;
+                    break;
             }
-        }
+        }   
     }
 }
+    
+
