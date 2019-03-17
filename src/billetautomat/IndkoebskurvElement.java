@@ -31,4 +31,9 @@ public class IndkoebskurvElement
     {
         return pris*antal;
     }
+    
+    public void incrementAntal()
+    {
+        antal++;
+    }
 }
