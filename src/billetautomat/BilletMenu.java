@@ -15,6 +15,7 @@ public class BilletMenu
 	Billetautomat automat = new Billetautomat();
 	String stringValg;
 	int valg = 0;
+        double pengeInd = 0;
 
 	while (true) //Test
 	{
@@ -42,7 +43,18 @@ public class BilletMenu
 		//case 1, indsæt pænge
 		case 1:
 		    System.out.print("Indtast hvor meget du vil indsætte: ");
-		    automat.indsætPenge(keyboardInput.nextDouble());
+                    
+                    stringValg = keyboardInput.nextLine();
+                    try
+                    {
+                        pengeInd = Double.parseDouble(stringValg);
+                    } catch (Exception ikketal)
+                    {
+                        ikketal.printStackTrace();
+                    }
+                    
+		    automat.indsætPenge(pengeInd);
+                    
 		    System.out.println("Din saldo er nu: " + automat.getBalance() + " kr.\n");
 		    break;
 
@@ -70,7 +82,7 @@ public class BilletMenu
 
 		//case 4, køb og udskriv billetterne i indkøbskurven
 		case 4:
-		    // Todo
+		    automat.udskrivBilleter();
 		    break;
                     
 		//case 3, tjek saldo

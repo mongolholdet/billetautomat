@@ -61,11 +61,11 @@ public class Billetautomat
                 keyboardInput.nextLine();
             } while (valg != 0);
             
-            System.out.println("Første gangs opsætningsprocedure færdig.");
+            System.out.println("Første gangs opsætningsprocedure færdig.\n");
         }
         else
         {
-            System.out.println("Første gangs opsætningsprocedure færdig.");
+            System.out.println("Første gangs opsætningsprocedure færdig.\n");
         }
     }
 
@@ -136,25 +136,32 @@ public class Billetautomat
     }
 
     /**
-     * Udskriv en billet.
+     * Udskriv billeter.
      */
-    public void udskrivBillet()
+    public void udskrivBilleter()
     {
-        if (balance >= pris)
+        if (balance >= getSamletBeloeb())
         {
-            samletSalgsbeløb = samletSalgsbeløb + pris;
-            balance = balance - pris;
-
-            System.out.println("##########B##T##########");
-            System.out.println("# Borgen Trafikselskab #");
-            System.out.println("#                      #");
-            System.out.println("#        Billet        #");
-            System.out.println("#        " + pris + " kr.      #");
-            System.out.println("#                      #");
-            System.out.println("##########B##T##########");
-            System.out.println();
+            samletSalgsbeløb += getSamletBeloeb();
+            balance -= getSamletBeloeb();
             
-            aktivitetslog.add(new Date() + " Der blev udskrevet en billet til " + pris + " kroner.");
+            for (IndkoebskurvElement element : IndkoebskurvElementer)
+            {
+                for(int i = 0; i < element.getAntal(); i++)
+                {
+                    System.out.println("##########B##T##########");
+                    System.out.println("# Borgen Trafikselskab #");
+                    System.out.println("#                      #");
+                    System.out.println("#        " + element.getNavn() + "        #");
+                    System.out.println("#        " + element.getBilletPris() + " kr.      #");
+                    System.out.println("#                      #");
+                    System.out.println("##########B##T##########");
+                    System.out.println();
+                } 
+            }
+            aktivitetslog.add(new Date() + " Der blev udskrevet billetter til i alt" + getSamletBeloeb() + " kroner.");
+            
+            IndkoebskurvElementer.clear();
         } 
         else
         {
@@ -313,12 +320,19 @@ public class Billetautomat
     private double getSamletBeloeb()
     {
         double sum = 0.0;
-            
-        for (IndkoebskurvElement element : IndkoebskurvElementer)
+        
+        if (IndkoebskurvElementer.isEmpty())
         {
-            sum += element.getSamletPris();
+            return sum;
         }
+        else
+        {
+            for (IndkoebskurvElement element : IndkoebskurvElementer)
+            {
+                sum += element.getSamletPris();
+            } 
             
-        return sum;
+            return sum;
+        }
     }
 }
