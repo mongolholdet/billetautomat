@@ -28,7 +28,7 @@ public class BilletMenu
 	    System.out.println("[6] Tjek billetpriser\n[7] Afslut\n[8] Log ind som montør");
 	    if (automat.getMontørtilstand())
 	    {
-		System.out.println("[9] Ændre pris på en billettype\n[10] Udskriv salgsbeløbet\n[11] Udskriv den komplette log\n[12] Log ud");
+		System.out.println("[9] Ændre pris på en billettype\n[10] Udskriv salgsbeløbet\n[11] Udskriv eller slet loggen\n[12] Log ud");
 	    }
 	    System.out.print("Vælg et menupunkt: ");
 	    stringValg = keyboardInput.nextLine(); // Muliggør yderligere "fejlinput" fra brugeren af programmet
