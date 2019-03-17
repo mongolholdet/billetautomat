@@ -14,8 +14,11 @@ public class BilletMenu
 	Scanner keyboardInput = new Scanner(System.in);
 	Billetautomat automat = new Billetautomat();
 	String stringValg;
-	int valg = 0;
-        double pengeInd = 0;
+	int menu_valg = 0;
+        
+        int intInput = 0;
+        double doubleInput = 0;
+        String stringInput;
 
 	while (true) //Test
 	{
@@ -24,21 +27,21 @@ public class BilletMenu
 	    System.out.println("[6] Tjek billetpriser\n[7] Afslut\n[8] Log ind som montør");
 	    if (automat.getMontørtilstand())
 	    {
-		System.out.println("[9] Udskriv salgsbeløbet\n[10] Udskriv den komplette log\n[11] Log ud");
+		System.out.println("[9] Ændre pris på en billettype\n[10] Udskriv salgsbeløbet\n[11] Udskriv den komplette log\n[12] Log ud");
 	    }
 	    System.out.print("Vælg et menupunkt: ");
 	    stringValg = keyboardInput.nextLine(); // Muliggør yderligere "fejlinput" fra brugeren af programmet
 
 	    try
 	    {
-		valg = Integer.parseInt(stringValg);
+		menu_valg = Integer.parseInt(stringValg);
 	    } catch (Exception ikketal)
 	    {
 		ikketal.printStackTrace();
 	    }
 	    System.out.println();
 
-	    switch (valg)
+	    switch (menu_valg)
 	    {
 		//case 1, indsæt pænge
 		case 1:
@@ -47,13 +50,13 @@ public class BilletMenu
                     stringValg = keyboardInput.nextLine();
                     try
                     {
-                        pengeInd = Double.parseDouble(stringValg);
+                        doubleInput = Double.parseDouble(stringValg);
                     } catch (Exception ikketal)
                     {
                         ikketal.printStackTrace();
                     }
                     
-		    automat.indsætPenge(pengeInd);
+		    automat.indsætPenge(doubleInput);
                     
 		    System.out.println("Din saldo er nu: " + automat.getBalance() + " kr.\n");
 		    break;
@@ -66,13 +69,13 @@ public class BilletMenu
                     stringValg = keyboardInput.nextLine();
                     try
                     {
-                        valg = Integer.parseInt(stringValg);
+                        intInput = Integer.parseInt(stringValg);
                     } catch (Exception ikketal)
                     {
                         ikketal.printStackTrace();
                     }
                     
-                    automat.tilfoejIndkoebskurvElement(valg);
+                    automat.tilfoejIndkoebskurvElement(intInput);
 		    break;
 
                 //case 3, print indholdet af indkøbskurven
@@ -107,17 +110,45 @@ public class BilletMenu
 		    automat.montørLogInd(keyboardInput.nextLine());
 		    break;
 
+                case 9: 
+                    automat.printBillettyper();
+                    
+                    System.out.print("Indtast hvilken type af billet vil du gerne ændre prisen på: ");
+                    stringValg = keyboardInput.nextLine();
+                    try
+                    {
+                        intInput = Integer.parseInt(stringValg);
+                    } catch (Exception ikketal)
+                    {
+                        ikketal.printStackTrace();
+                    }
+                    
+                    System.out.print("Indtast ny pris på denne type af billet: ");
+                    stringValg = keyboardInput.nextLine();
+                    try
+                    {
+                        doubleInput = Double.parseDouble(stringValg);
+                    } catch (Exception ikketal)
+                    {
+                        ikketal.printStackTrace();
+                    }
+                                        
+                    automat.setBilletpris(intInput, doubleInput);
+                    
+                    automat.printBillettyper();
+                    break;
+                    
 		//case 9, få salgsbeløb       
-		case 9:
+		case 10:
 		    System.out.println("Salgsbeløbet er: " + automat.getSamletSalgsbeløb());
 		    break;
 
 		//case 10, udskriv transaktioner  
-		case 10:
+		case 11:
 		    automat.udskrivTransaktioner();
 		    break;
 		//case 11, log montør ud            
-		case 11:
+		case 12:
 		    automat.montørLogUd();
 		    break;
 
