@@ -14,13 +14,14 @@ public class TestAfKurv
     {
         Scanner keyboardInput = new Scanner(System.in);
 
-        Indkoebskurv Indkøbskurv = new Indkoebskurv();
+        Billetautomat automat = new Billetautomat();
 
-        Indkøbskurv.printIndkoebskurv();
+        automat.printIndkoebskurv();
         
-        Indkøbskurv.tilfoejElement("Test", 24.0);
-        Indkøbskurv.tilfoejElement("Test2", 25.0);
+        automat.printBillettyper();
         
-        Indkøbskurv.printIndkoebskurv();
+        automat.tilfoejIndkoebskurvElement(1);
+        automat.tilfoejIndkoebskurvElement(1);
+        automat.tilfoejIndkoebskurvElement(2);
     }
 }
