@@ -243,12 +243,13 @@ public class Billetautomat
     }
     
     // Alt herunder hører til indkøbskurv funktionaliteten
+    
+    
+    // Udskriver de mulige billettyper der kan købes
     public void printBillettyper()
     {       
         int i = 1;
-        
-        System.out.println("Billettyper:");
-        
+               
         for (BilletType billettype : billettyper)
         {
             System.out.println("[" + i + "] " + billettype.getNavn() + " : " + billettype.getPris() + " kr.");
@@ -258,6 +259,7 @@ public class Billetautomat
         System.out.println();
     }
     
+    // Tilføjer en type af billet til indkøvskurven
     public void tilfoejIndkoebskurvElement(int type)
     {              
         if (IndkoebskurvElementer.isEmpty())
@@ -286,6 +288,7 @@ public class Billetautomat
         printIndkoebskurv();
     }
     
+    // Udskriver indholdet af indkøbskurven
     public void printIndkoebskurv()
     {
         System.out.println("Din indkøbskurv:");
@@ -305,7 +308,8 @@ public class Billetautomat
         
         System.out.println();
     }
-        
+     
+    // Giver det samlede købsbeløv
     private double getSamletBeloeb()
     {
         double sum = 0.0;
