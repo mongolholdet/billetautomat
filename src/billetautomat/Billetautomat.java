@@ -3,6 +3,7 @@ package billetautomat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.io.*;
 
 /**
  * Model af en simpel billetautomat til enkeltbilletter med en fast pris.
@@ -14,7 +15,7 @@ public class Billetautomat
     private double balance; // Hvor mange penge kunden p.t. har puttet i automaten
     private double samletSalgsbeløb; // Hvor mange penge maskinen har solgt for
     private boolean montørtilstand; // Er en montør logget ind på maskinen
-    private ArrayList<String> aktivitetslog = new ArrayList<String>();
+    Log aktivitetslog; 
     // Lister til indkøbskurv
     private ArrayList<IndkoebskurvElement> IndkoebskurvElementer = new ArrayList<IndkoebskurvElement>();
     private ArrayList<BilletType> billettyper = new ArrayList<BilletType>();
@@ -24,8 +25,9 @@ public class Billetautomat
      *
      * @param billetpris skal være større end nul
      */
-    public Billetautomat()
+    public Billetautomat() throws IOException
     {
+        aktivitetslog = new Log("aktivitetslog.txt");
         balance = 0;
         
         Scanner keyboardInput = new Scanner(System.in);
@@ -75,13 +77,11 @@ public class Billetautomat
      * @param billetpris skal være større end nul
      * @param startbalance mængden af penge automaten allerede indeholder
      */
-    public Billetautomat(double billetpris, double startbalance)
+    public Billetautomat(double billetpris, double startbalance) throws IOException
     {
         if (billetpris > 0)
         {
             pris = billetpris;
-            aktivitetslog.add(new Date() + " Billetautomat startet med billetprisen: " + pris + " og startsbeløbet: " + ".");
-
         } 
         else
         {
@@ -97,28 +97,29 @@ public class Billetautomat
             System.out.println("Ugyldig startbalance. Startbalance sat til 0.");
             balance = 0;
         }
+        aktivitetslog.tilfoej(new Date().toString(), "Billetautomat startet med billetprisen:", Double.toString(pris), Double.toString(balance));
     }
 
     /**
      * Giver prisen for en billet.
      */
-    public double getBilletpris()
+    public double getBilletpris() throws IOException
     {
         double resultat = pris;
-        aktivitetslog.add(new Date() + " Der blev udskrevet billetpris. Billetprisen er :" + resultat);
+        aktivitetslog.tilfoej(new Date().toString(), "Der blev udskrevet billetpris. Billetprisen er :", Double.toString(resultat), "");
         return resultat;
     }
 
     /**
      * Modtag nogle penge (i kroner) fra en kunde.
      */
-    public void indsætPenge(double beløb)
+    public void indsætPenge(double beløb) throws IOException
     {
         if (beløb > 0)
         {
             balance = balance + beløb;
-            
-            aktivitetslog.add(new Date() + " Der blev indsat "+beløb+" kroner.");
+
+            aktivitetslog.tilfoej(new Date().toString(), "Der blev indsat antal kroner:", Double.toString(beløb), "");
         } 
         else
         {
@@ -129,16 +130,16 @@ public class Billetautomat
     /**
      * Giver balancen (beløbet maskinen har modtaget til den næste billet).
      */
-    public double getBalance()
+    public double getBalance() throws IOException
     {
-        aktivitetslog.add(new Date() + " Balancen blev returneret, den var: " + balance + ".");
+        aktivitetslog.tilfoej(new Date().toString(), "Balancen blev returneret, den var:", Double.toString(balance), "");
         return balance;
     }
 
     /**
      * Udskriv billeter.
      */
-    public void udskrivBilleter()
+    public void udskrivBilleter() throws IOException
     {
         if (balance >= getSamletBeloeb())
         {
@@ -157,9 +158,11 @@ public class Billetautomat
                     System.out.println("#                      #");
                     System.out.println("##########B##T##########");
                     System.out.println();
+                    aktivitetslog.tilfoej(new Date().toString(), "Der blev udskrevet en billet til:", Double.toString(element.getBilletPris()), "af" + element.getNavn() + "varianten");
+
                 } 
             }
-            aktivitetslog.add(new Date() + " Der blev udskrevet billetter til i alt" + getSamletBeloeb() + " kroner.");
+            aktivitetslog.tilfoej(new Date().toString(), "Der blev udskrevet billetter til i alt", Double.toString(getSamletBeloeb()), "");
             
             IndkoebskurvElementer.clear();
         } 
@@ -169,14 +172,13 @@ public class Billetautomat
         }
     }
 
-    public void setBilletpris(int type, double pris)
+    public void setBilletpris(int type, double pris) throws IOException
     {
         if (montørtilstand)
         {
             billettyper.get(type-1).setPris(pris);
             
-            
-            aktivitetslog.add(new Date() + "Prisen på billettypen" + billettyper.get(type-1).getNavn() + "er sat til:" + pris);
+            aktivitetslog.tilfoej(new Date().toString(), "Prisen på billettypen", billettyper.get(type-1).getNavn(), "er sat til" + pris);
         } 
         else
         {
@@ -184,11 +186,11 @@ public class Billetautomat
         }
     }
 
-    public double getSamletSalgsbeløb()
+    public double getSamletSalgsbeløb() throws IOException
     {
         if (montørtilstand)
         {
-            aktivitetslog.add(new Date() + " Det samlede salgsbeløb blev printet. Salgsbeløbet var: " + samletSalgsbeløb + ".");
+            aktivitetslog.tilfoej(new Date().toString(), "Det samlede salgsbeløb blev printet. Salgsbeløbet var:", Double.toString(samletSalgsbeløb),"");
             return samletSalgsbeløb;
         } 
         else
@@ -198,13 +200,13 @@ public class Billetautomat
         }
     }
 
-    public void montørLogInd(String montørkode)
+    public void montørLogInd(String montørkode) throws IOException
     {
         if (montørkode.equals("1234"))
         {
             montørtilstand = true;
             System.out.println("Korrekt montørkode. Husk at logge ud igen!");
-            aktivitetslog.add(new Date() + " Montør loggede ind.");
+            aktivitetslog.tilfoej(new Date().toString(), "Montør loggede ind med kode", montørkode,"");
         } 
         else
         {
@@ -212,29 +214,25 @@ public class Billetautomat
         }
     }
     
-    public boolean getMontørtilstand()
+    public boolean getMontørtilstand() throws IOException
     {
+        aktivitetslog.tilfoej(new Date().toString(), "Montørtilstand tjekket. Montøren var logget ind:", Boolean.toString(montørtilstand),"");
         return montørtilstand;
     }
 
-    public void montørLogUd()
+    public void montørLogUd() throws IOException
     {
         montørtilstand = false;
         System.out.println("Logget ud.");
-        aktivitetslog.add(new Date() + " Montør logget ud.");
+        aktivitetslog.tilfoej(new Date().toString(), "Montør logget ud. Logintilstand:", Boolean.toString(montørtilstand),"");
     }
     
-    public void udskrivTransaktioner()
+    public void udskrivTransaktioner() throws IOException
     {
         if (montørtilstand)
         {
-            System.out.print("========== log pr " + new Date());
-            for (String transaktion : aktivitetslog)
-            {
-                System.out.println(transaktion);
-            }
-            System.out.println("==========");
-            aktivitetslog.add(new Date() + " Hele loggen blev udskrevet.");
+            aktivitetslog.tilfoej(new Date().toString(), "Loggen tilgået. Montøren var logget ind:", Boolean.toString(montørtilstand),"");
+            aktivitetslog.filtrerLogMenu();
         } 
         else
         {
@@ -242,10 +240,10 @@ public class Billetautomat
         }
     }
     
-    public double returpenge()
+    public double returpenge() throws IOException
     {
         double returbeløb = balance;
-        aktivitetslog.add(new Date() + " Kunden fik "+returbeløb+" kr retur");
+        aktivitetslog.tilfoej(new Date().toString(), "Kunden fik antal kroner retur:", Double.toString(returbeløb),"");
         balance = 0;
 	System.out.println("Du får "+returbeløb+" kr retur");
 	return returbeløb;
@@ -255,12 +253,13 @@ public class Billetautomat
     
     
     // Udskriver de mulige billettyper der kan købes
-    public void printBillettyper()
+    public void printBillettyper() throws IOException
     {       
         int i = 1;
                
         for (BilletType billettype : billettyper)
         {
+            aktivitetslog.tilfoej(new Date().toString(), "Kunden tjekkede alle billetter. Aktuel billet:", billettype.getNavn(),"Til antal kroner:" + Double.toString(billettype.getPris()));
             System.out.println("[" + i + "] " + billettype.getNavn() + " : " + billettype.getPris() + " kr.");
             i++;
         }
@@ -269,7 +268,7 @@ public class Billetautomat
     }
     
     // Tilføjer en type af billet til indkøvskurven
-    public void tilfoejIndkoebskurvElement(int type)
+    public void tilfoejIndkoebskurvElement(int type) throws IOException
     {              
         if (IndkoebskurvElementer.isEmpty())
         {
@@ -292,13 +291,14 @@ public class Billetautomat
             if(!findesAllerede)
             {
                 IndkoebskurvElementer.add(new IndkoebskurvElement(billettyper.get(type-1).getNavn(), billettyper.get(type-1).getPris()));
+                aktivitetslog.tilfoej(new Date().toString(), "Kunden tilføjede billetype til kurven:", billettyper.get(type-1).getNavn(),"Til antal kroner:" + Double.toString(billettyper.get(type-1).getPris()));
             }
         }
         printIndkoebskurv();
     }
     
     // Udskriver indholdet af indkøbskurven
-    public void printIndkoebskurv()
+    public void printIndkoebskurv() throws IOException
     {
         System.out.println("Din indkøbskurv:");
         
@@ -310,6 +310,7 @@ public class Billetautomat
         {
             for (IndkoebskurvElement element : IndkoebskurvElementer)
             {
+                aktivitetslog.tilfoej(new Date().toString(), "Kunden tjekkede sin kurv. I kurven er:" + Double.toString(element.getAntal()) + " x " + element.getNavn() + " : " + Double.toString(element.getAntal()) + " x " + Double.toString(element.getBilletPris()) + " kr.","","");
                 System.out.println(element.getAntal() + " x " + element.getNavn() + " : " + element.getAntal() + " x " + element.getBilletPris() + " kr.");
             }
             System.out.println("Samlet beløb: " + getSamletBeloeb() + " kr.");
