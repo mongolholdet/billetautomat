@@ -2,22 +2,19 @@ package billetautomat;
 
 public class LogElement 
 {
-
     public String dato;
     public String handling;
-    public String gamleVaerdi;
-    public String nyeVaerdi;
+    public String vaerdi;
 
-    public LogElement(String datoC, String handlingC, String gamleVaerdiC, String nyeVaerdiC) 
+    public LogElement(String datoC, String handlingC, String vaerdiC) 
     {
         dato = datoC;
         handling = handlingC;
-        gamleVaerdi = gamleVaerdiC;
-        nyeVaerdi = nyeVaerdiC;
+        vaerdi = vaerdiC;
     }
 
     public String toString()
     {
-        return (dato + handling + gamleVaerdi + nyeVaerdi);
+        return (dato + handling + vaerdi);
     }
 }
