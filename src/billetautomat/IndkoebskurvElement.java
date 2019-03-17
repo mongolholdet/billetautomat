@@ -4,7 +4,7 @@ public class IndkoebskurvElement
 {
     private String navn;
     private double pris;
-    private int antal;
+    private int antal = 1;
     
     public IndkoebskurvElement(String n, double p)
     {
