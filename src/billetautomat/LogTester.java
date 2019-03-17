@@ -9,10 +9,10 @@ public class LogTester
     {
         //System.out.println(new File(".").getAbsoluteFile());
         
-        Log logTest = new Log("test.txt");
+        Log logTest = new Log("aktivitetslog.txt");
         //logTest.tilfoej("1337", "Dabbede paa hatere", "420");
-        //logTest.tilfoej("1338", "Der blev udskrevet en billet til", "421");
-        logTest.filtrerLog();
+        logTest.tilfoej(new Date().toString(), "Der blev udskrevet en billet til:", "421","Af test varianten");
+        logTest.filtrerLogMenu();
         
     }
 }
