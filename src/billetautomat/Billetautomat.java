@@ -158,7 +158,7 @@ public class Billetautomat
                     System.out.println("#                      #");
                     System.out.println("##########B##T##########");
                     System.out.println();
-                    aktivitetslog.tilfoej(new Date().toString(), "Der blev udskrevet en billet til:", Double.toString(element.getBilletPris()), "af" + element.getNavn() + "varianten");
+                    aktivitetslog.tilfoej(new Date().toString(),"Der blev udskrevet en billet til", Double.toString(element.getBilletPris()), " af " + element.getNavn() + " varianten");
 
                 } 
             }
@@ -310,7 +310,7 @@ public class Billetautomat
         {
             for (IndkoebskurvElement element : IndkoebskurvElementer)
             {
-                aktivitetslog.tilfoej(new Date().toString(), "Kunden tjekkede sin kurv. I kurven er:" + Double.toString(element.getAntal()) + " x " + element.getNavn() + " : " + Double.toString(element.getAntal()) + " x " + Double.toString(element.getBilletPris()) + " kr.","","");
+                aktivitetslog.tilfoej(new Date().toString(), "Kunden tjekkede sin kurv. I kurven er:" + Double.toString(element.getAntal()) + " x " + element.getNavn() , " : ",Double.toString(element.getAntal()) + " x " + Double.toString(element.getBilletPris()) + " kr.");
                 System.out.println(element.getAntal() + " x " + element.getNavn() + " : " + element.getAntal() + " x " + element.getBilletPris() + " kr.");
             }
             System.out.println("Samlet beløb: " + getSamletBeloeb() + " kr.");
