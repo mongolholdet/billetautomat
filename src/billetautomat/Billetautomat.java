@@ -169,16 +169,18 @@ public class Billetautomat
         }
     }
 
-    public void setBilletpris(double nyPris)
+    public void setBilletpris(int type, double pris)
     {
         if (montørtilstand)
         {
-            pris = nyPris;
-            aktivitetslog.add(new Date() + " Billetprisen er sat til:" + pris);
+            billettyper.get(type-1).setPris(pris);
+            
+            
+            aktivitetslog.add(new Date() + "Prisen på billettypen" + billettyper.get(type-1).getNavn() + "er sat til:" + pris);
         } 
         else
         {
-            System.err.println("Kunne ikke sætte pris - forkert kode");
+            System.err.println("Kunne ikke sætte pris - montør ikke logget ind");
         }
     }
 
@@ -186,7 +188,7 @@ public class Billetautomat
     {
         if (montørtilstand)
         {
-            aktivitetslog.add(new Date() + " Det samlede salgsbeløb blev printet. Salgsbekøbet var: " + samletSalgsbeløb + ".");
+            aktivitetslog.add(new Date() + " Det samlede salgsbeløb blev printet. Salgsbeløbet var: " + samletSalgsbeløb + ".");
             return samletSalgsbeløb;
         } 
         else
