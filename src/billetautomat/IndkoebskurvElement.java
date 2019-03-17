@@ -1,12 +1,12 @@
 package billetautomat;
 
-public class IndkoebskurvPost
+public class IndkoebskurvElement
 {
     private String navn;
     private double pris;
     private int antal;
     
-    public IndkoebskurvPost(String n, double p)
+    public IndkoebskurvElement(String n, double p)
     {
 	navn = n;
 	pris = p;

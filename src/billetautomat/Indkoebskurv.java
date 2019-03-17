@@ -14,7 +14,7 @@ public class Indkoebskurv
     
     public void tilfoejPost(String navn, double pris)
     {
-        poster.add(new IndkoebskurvPost(navn,pris));
+        poster.add(new IndkoebskurvElement(navn,pris));
     }
     
     public void printIndkoebskurv()
