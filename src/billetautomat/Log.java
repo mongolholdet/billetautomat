@@ -209,7 +209,8 @@ public class Log
                         FileWriter logSletter = new FileWriter(filSti);
                         logSletter.write("");
                         logSletter.close();
-                        System.out.println("Loggen er slettet.");
+                        logData.clear();
+                        System.out.println("Loggen er slettet.");           
                     }
                     break;
                     
