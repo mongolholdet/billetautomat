@@ -3,7 +3,8 @@ package billetautomat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
-import java.io.*;
+import java.io.IOException;
+
 
 /**
  * Model af en simpel billetautomat til enkeltbilletter med en fast pris.
@@ -15,7 +16,7 @@ public class Billetautomat
     private double balance; // Hvor mange penge kunden p.t. har puttet i automaten
     private double samletSalgsbeløb; // Hvor mange penge maskinen har solgt for
     private boolean montørtilstand; // Er en montør logget ind på maskinen
-    Log aktivitetslog; 
+    private Log aktivitetslog; 
     // Lister til indkøbskurv
     private ArrayList<IndkoebskurvElement> IndkoebskurvElementer = new ArrayList<IndkoebskurvElement>();
     private ArrayList<BilletType> billettyper = new ArrayList<BilletType>();
