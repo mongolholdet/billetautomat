@@ -26,18 +26,12 @@ public class Log
         logFileReader.close();
     }
 
-    public void tilfoej(String dato, String handling, String vaerdi, String sekundaerVaerdi) throws IOException 
+    public void tilfoej(String dato, String handling, String vaerdi) throws IOException 
     {
         FileWriter logFileWriter = new FileWriter(filSti, true); //sætter append til at være true
         
-        if (sekundaerVaerdi == "")
-        {
-            logFileWriter.write(dato + "_" + handling + "_" + vaerdi + "\n"); //Printer til filen
-        }
-        else
-        {
-            logFileWriter.write(dato + "_" + handling + "_" + vaerdi + "_" + sekundaerVaerdi + "\n"); //Printer til filen
-        }
+        logFileWriter.write(dato + "_" + handling + "_" + vaerdi + "\n"); //Printer til filen
+
         logFileWriter.close();
     }
 
@@ -53,7 +47,6 @@ public class Log
         String linjeDato;
         String linjeHandling;
         String linjeVaerdi;
-        String linjeSekundaerVaerdi = "";
 
         while (linje != null) 
         {
@@ -61,12 +54,8 @@ public class Log
             linjeDato = linjeArray[0];
             linjeHandling = linjeArray[1];
             linjeVaerdi = linjeArray[2];
-            
-            if(linjeArray.length >= 4)
-            {
-                linjeSekundaerVaerdi = linjeArray[3];
-            }
-            logData.add(new LogElement(linjeDato, linjeHandling, linjeVaerdi, linjeSekundaerVaerdi));
+
+            logData.add(new LogElement(linjeDato, linjeHandling, linjeVaerdi));
             linje = logFilLaes.readLine();
         }
         logFilLaes.close();
@@ -98,7 +87,7 @@ public class Log
         logLoad();
         Scanner keyboardInput = new Scanner(System.in);
         int input;
-        System.out.println("Menuen ti loggen er åbnet. vælg fra på kommandoerne:");
+        System.out.println("Menuen til loggen er åbnet. vælg fra på kommandoerne:");
         boolean logSelection = true;
         
         while (logSelection)
@@ -124,7 +113,7 @@ public class Log
                     //opretter en arrayliste med alle udskrevne billetter, altså alle køb
                     for (LogElement logElement : logData) 
                     {
-                        if (logElement.getHandling().contains("Der blev udskrevet en billet til")) 
+                        if (logElement.getHandling().contains("Der blev udskrevet en billet af ")) 
                         {
                             logBeloeb.add(logElement);
                         }
