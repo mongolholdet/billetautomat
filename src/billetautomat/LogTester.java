@@ -9,7 +9,6 @@ public class LogTester
     {
         Log logTest = new Log("aktivitetslog.txt");
         logTest.tilfoej(new Date().toString(), "Der blev udskrevet en billet til:", "400");
-        logTest.filtrerLogMenu();
-        
+        logTest.filtrerLogMenu();    
     }
 }
