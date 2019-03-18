@@ -27,9 +27,7 @@ public class LogElement
     {
         return vaerdi;
     }
-        
-
-    
+           
     public String toString()
     {
         return (dato + " " + handling + " " + vaerdi);   
