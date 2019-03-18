@@ -5,14 +5,12 @@ public class LogElement
     private String dato;
     private String handling;
     private String vaerdi;
-    private String sekundaerVaerdi;
 
-    public LogElement(String datoC, String handlingC, String vaerdiC, String sekundaerVaerdiC) 
+    public LogElement(String datoC, String handlingC, String vaerdiC) 
     {
         dato = datoC;
         handling = handlingC;
         vaerdi = vaerdiC;
-        sekundaerVaerdi = sekundaerVaerdiC;
     }
     
     public String getDato()
@@ -30,13 +28,10 @@ public class LogElement
         return vaerdi;
     }
         
-    public String getSekundaerVaerdi()
-    {
-        return sekundaerVaerdi;
-    }
+
     
     public String toString()
     {
-        return (dato + " " + handling + " " + vaerdi + " " + sekundaerVaerdi);   
+        return (dato + " " + handling + " " + vaerdi);   
     }
 }
