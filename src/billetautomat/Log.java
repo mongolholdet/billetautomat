@@ -11,7 +11,6 @@ import java.util.Collections;
 
 public class Log 
 {
-
     private String filSti;
     private ArrayList<LogElement> logData;
 
