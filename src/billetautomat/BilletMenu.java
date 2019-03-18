@@ -103,6 +103,7 @@ public class BilletMenu
 		//case 7, afslut køb og print returpenge
 		case 7:
 		    System.out.println("Session afsluttet. Nyd din rejse med Borgen Trafikselskab.");
+                    automat.returpenge();
 		    break;
 
 		//case 8, montør log ind
